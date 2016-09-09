@@ -1,0 +1,2 @@
+<script language="javascript" src="../../application/views/templates/js/registration/registration.js"></script>
+<script language="javascript" src="../../application/views/templates/js/registration/form.js"></script>

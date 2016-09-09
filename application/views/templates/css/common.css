@@ -1,0 +1,57 @@
+body{
+	padding-left: 100px;
+	padding-right: 100px;
+}
+
+.day{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	margin: 5px;
+	padding: 10px;
+	font-size: 32px;
+	border: 1px solid white;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	border-radius: 10px 10px 10px 10px;
+	-webkit-box-shadow: 5px 5px 5px 2px #637C8A;
+	box-shadow: 5px 5px 5px 2px #637C8A;
+	width: 100px;
+	height: 100px;
+	float: left;
+}
+
+.empty_day{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	margin: 5px;
+	padding: 10px;
+	font-size: 32px;
+	border: 1px solid white;
+	-webkit-box-shadow: 0 0 2px 1px #FFD1D1;
+	box-shadow: 0 0 2px 1px #FFD1D1;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	border-radius: 10px 10px 10px 10px;
+	width: 100px;
+	height: 100px;
+	float: left;
+	color: grey;
+}
+
+.day:hover{
+	cursor: pointer;
+}
+
+.day:active{
+	color: white;
+	background-color: red;
+	-webkit-box-shadow: 2px 2px 2px 1px #637C8A;
+	box-shadow: 2px 2px 2px 1px #637C8A;
+	border: 1px solid red;
+}
