@@ -4,7 +4,7 @@ body{
 }
 
 input[type=text], input[type=password] {
-	width: 350px;
+	width: 100%;
 	padding: 12px 20px;
 	margin: 8px 0;
 	box-sizing: border-box;
@@ -18,4 +18,30 @@ input[type=text]:focus, input[type=password]:focus{
 	box-sizing: border-box;
 	border: 1px solid blue;
 	border-radius: 4px;
+}
+
+.registration_container{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	margin: 15px;
+	padding: 10px;
+	font-size: 15px;
+	border: 1px solid graytext;
+	-webkit-border-radius: 10px 10px 10px 10px;
+	border-radius: 10px 10px 10px 10px;
+	-webkit-box-shadow: 5px 5px 5px 2px #637C8A;
+	box-shadow: 5px 5px 5px 2px #637C8A;
+	width: 250px;
+	height: 400px;
+	display: inline-block;
+}
+
+.hint_text{
+	color: red;
+	position: absolute;
+	white-space: nowrap;
 }

@@ -27,4 +27,10 @@ class Registration extends CI_Controller {
 		$this->load->view('templates/registration/body');
 		$this->load->view('templates/main/footer');
 	}
+	
+	public function userRegistrationData(){
+		
+		echo json_encode(array("value" => $_POST['firstname']));
+		
+	}
 }

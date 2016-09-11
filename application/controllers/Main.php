@@ -22,6 +22,7 @@ class Main extends CI_Controller {
 	public function view()
 	{
 		$this->load->view('templates/main/header_top');
+		$this->load->view('templates/main/header_middle');
 		//$this->load->view('templates/registration/header_middle', '<script></script>');
 		$this->load->view('templates/main/header_bottom');
 		$this->load->view('templates/main/body');
