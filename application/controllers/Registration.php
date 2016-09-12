@@ -29,8 +29,19 @@ class Registration extends CI_Controller {
 	}
 	
 	public function userRegistrationData(){
+		$firstname = $_POST['firstname'];
+		$lastname = $_POST['lastname'];
+		$nickname = $_POST['nickname'];
+		$birthday = $_POST['birthday'];
+		$email = $_POST['email'];
+		$registration_info = array(
+				"firstname" => $_POST['firstname'],
+				"lastname" => $_POST['lastname'],
+				"nickname" => $_POST['nickname'],
+				"birthday" => $_POST['birthday'],
+				"email" => $_POST['email']
+		);
 		
-		echo json_encode(array("value" => $_POST['firstname']));
-		
+		echo json_encode($registration_info);
 	}
 }

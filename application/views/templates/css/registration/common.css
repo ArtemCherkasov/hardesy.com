@@ -36,12 +36,14 @@ input[type=text]:focus, input[type=password]:focus{
 	-webkit-box-shadow: 5px 5px 5px 2px #637C8A;
 	box-shadow: 5px 5px 5px 2px #637C8A;
 	width: 250px;
-	height: 400px;
+	height: auto;
 	display: inline-block;
 }
 
 .hint_text{
+	font-size: 12px;
 	color: red;
 	position: absolute;
-	white-space: nowrap;
+	~white-space: nowrap;
+	width: 450px;
 }
