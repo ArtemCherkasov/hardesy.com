@@ -26,6 +26,21 @@ class User extends CI_Controller {
 	
 	public function view()
 	{
+		$this->load->helper('form');
+		$this->load->helper('url');
+
+		if($this->input->post('submit')){
+			$config['upload_path'] = './uploads/';
+			$config['allowed_types'] = '*';
+			$this->load->library('upload', $config);
+			
+			if($this->upload->do_upload('userfile')){
+			} else {
+				echo "file upload failed";
+			}
+			
+		} else {
+		}
 		$session_data = array(
 			"firstname" => "",
 			"lastname" => "",
@@ -39,7 +54,6 @@ class User extends CI_Controller {
 		
 		$this->load->database();
 		$this->load->library('session');
-		
 		$session_data = $this->session->userdata();
 		//echo json_encode($session_data["logged"]);
 		if(array_key_exists("logged", $session_data)){
@@ -91,4 +105,14 @@ class User extends CI_Controller {
 		$this->session->sess_destroy();
 		echo json_encode(array("result" => "success"));
 	}
+	
+	public function index(){
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = '*';
+		$this->load->library('upload', $config);
+		if($this->upload->do_upload('file')){
+			echo "success";
+		} 
+	}
+	
 }

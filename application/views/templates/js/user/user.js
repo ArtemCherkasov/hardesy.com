@@ -1,4 +1,4 @@
-var subdomen = "Hardesy.com";
+var subdomen = "Hardesy.com";+
 
 $(document).ready(function(){
 
@@ -17,6 +17,13 @@ $(document).ready(function(){
 		});
 
 	});
-
-
+	$("#upload_file_dialog").dialog({
+	      autoOpen: false,
+	      height: 400,
+	      width: 350,
+	      modal: true
+	});
+	$("#button_load_image_id").click(function(){
+		$("#upload_file_dialog").dialog("open");
+	});
 });
