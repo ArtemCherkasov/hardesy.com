@@ -12,19 +12,31 @@ $(document).ready(function(){
 		window.location = "/" + subdomen + "/index.php/registration";
 		//window.location = "/index.php/registration";
 	});
+	
 	$("#id_button_login").click(function(){
-		$.ajax({
-			type: "POST",
-			url: "/" + subdomen + "/index.php/user/login",
-			data: {
-				login: $("input:text[name=login]").val(),
-				password: $("input:password[name=password]").val()
-			},
-			dataType: "json"
-		}).done(function(message){
-			console.log(message);
-		}).fail(function(){
-			console.log("fail");
-		});
+		login();
+	});
+	
+	$("input:password[name=password]").keypress(function(){
+		login();
 	});
 });
+
+function login(){
+	$.ajax({
+		type: "POST",
+		url: "/" + subdomen + "/index.php/user/login",
+		data: {
+			login: $("input:text[name=login]").val(),
+			password: $("input:password[name=password]").val()
+		},
+		dataType: "json"
+	}).done(function(message){
+		console.log(message);
+		if (message.result == "success"){
+			window.location = "/" + subdomen + "/index.php/user";
+		}
+	}).fail(function(){
+		console.log("fail");
+	});
+}

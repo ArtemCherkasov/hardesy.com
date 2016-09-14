@@ -1,0 +1,26 @@
+.image{
+	width: 200px;
+	height: 400px;
+	border: 1px solid red;
+	margin: 15px;
+	position: relative;
+	float: left;
+}
+
+.short_user_data{
+	width: 400px;
+	height: 200px;
+	border: 1px solid red;
+	margin: 15px;
+	~display: inline-block;
+	~margin-bottom: 215px;
+	float: left;
+	font-size: 26px;
+	font-weight: bolder;
+}
+
+.subcontent{
+	position: relative;
+	~border: 1px solid red;
+	height: auto;
+}

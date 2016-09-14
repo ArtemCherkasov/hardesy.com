@@ -1,4 +1,6 @@
 .footer{
+	display: inline-block;
+	float: left;
 	border-top: 1px solid #c4c4c4;
 	width: 100%;
 	text-align: center;

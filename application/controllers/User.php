@@ -18,24 +18,42 @@ class User extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	public $session_data = array(
+			"nickname" => "",
+			"email" => "",
+			"logged" => false
+	);
 	
 	public function view()
 	{
+		$session_data = array(
+			"firstname" => "",
+			"lastname" => "",
+			"nickname" => "",
+			"email" => "",
+			"logged" => false
+		);
 		$subdomain = array(
 				"subdomain" => ""
 		);
-
+		
 		$this->load->database();
 		$this->load->library('session');
+		
 		$session_data = $this->session->userdata();
-		echo json_encode($session_data);
-		/*
-		$this->load->view('templates/main/header_top', $subdomain);
-		//$this->load->view('templates/registration/header_middle', $subdomain);
-		$this->load->view('templates/main/header_bottom', $subdomain);
-		//$this->load->view('templates/registration/body', $subdomain);
-		$this->load->view('templates/main/footer', $subdomain);
-		*/
+		//echo json_encode($session_data["logged"]);
+		if(array_key_exists("logged", $session_data)){
+			$this->load->view('templates/main/header_top', $subdomain);
+			$this->load->view('templates/user/header_middle', $subdomain);
+			$this->load->view('templates/main/header_bottom', $subdomain);
+			$this->load->view('templates/user/body', $session_data);
+			$this->load->view('templates/main/footer', $subdomain);
+		} else {
+			echo "you must have get loggin!";
+			$this->load->helper('url');
+			redirect("", $subdomain);
+		}
+
 	}
 	
 	public function login(){
@@ -47,11 +65,7 @@ class User extends CI_Controller {
 		$password = $_POST['password'];
 		$email = $_POST['login'];
 		$response_info = array("result" => "");
-		$session_data = array(
-				"nickname" => "",
-				"email" => "",
-				"logged" => false
-		);
+		
 		
 		$sql = "SELECT * FROM user WHERE ( nickname = ? AND password = ? ) OR ( email = ? AND password = ? )"; 
 		$query = $this->db->query( $sql, array($nickname, md5($password), $email, md5($password)) );
@@ -59,8 +73,10 @@ class User extends CI_Controller {
 		if (sizeof($query->result()) > 0){
 			$response_info["result"] = "success";
 			$session_data = array(
-					"nickname" => $nickname,
-					"email" => $email,
+					"firstname" => $query->result()[0]->first_name,
+					"lastname" => $query->result()[0]->last_name,
+					"nickname" => $query->result()[0]->nickname,
+					"email" => $query->result()[0]->email,
 					"logged" => true
 			);
 			$this->session->set_userdata($session_data);
@@ -68,5 +84,11 @@ class User extends CI_Controller {
 		
 		echo json_encode($response_info);
 		
+	}
+	
+	public function closeSession(){
+		$this->load->library('session');
+		$this->session->sess_destroy();
+		echo json_encode(array("result" => "success"));
 	}
 }
