@@ -1,1 +1,2 @@
-<script language="javascript" src="../../application/views/templates/js/main.js"></script>
+<?php $url = "Hardesy.com"; ?>
+<script language="javascript" src="../<?=$url?>/application/views/templates/js/main.js"></script>

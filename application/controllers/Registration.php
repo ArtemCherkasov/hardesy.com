@@ -21,27 +21,59 @@ class Registration extends CI_Controller {
 	
 	public function view()
 	{
-		$this->load->view('templates/main/header_top');
-		$this->load->view('templates/registration/header_middle', '<script></script>');
-		$this->load->view('templates/main/header_bottom');
-		$this->load->view('templates/registration/body');
-		$this->load->view('templates/main/footer');
+		$subdomain = array(
+				"subdomain" => ""
+		);
+		$this->load->view('templates/main/header_top', $subdomain);
+		$this->load->view('templates/registration/header_middle', $subdomain);
+		$this->load->view('templates/main/header_bottom', $subdomain);
+		$this->load->view('templates/registration/body', $subdomain);
+		$this->load->view('templates/main/footer', $subdomain);
 	}
 	
 	public function userRegistrationData(){
+		
+		$ready_to_save = false;
+		$this->load->database();
 		$firstname = $_POST['firstname'];
 		$lastname = $_POST['lastname'];
 		$nickname = $_POST['nickname'];
 		$birthday = $_POST['birthday'];
 		$email = $_POST['email'];
-		$registration_info = array(
-				"firstname" => $_POST['firstname'],
-				"lastname" => $_POST['lastname'],
-				"nickname" => $_POST['nickname'],
-				"birthday" => $_POST['birthday'],
-				"email" => $_POST['email']
+		
+		$response_info = array(
+				"nickname" => '',
+				"email" => ''				
 		);
 		
-		echo json_encode($registration_info);
+		$this->db->where('nickname', $nickname);
+		$query = $this->db->get('user');
+		
+		if (sizeof($query->result()) > 0){
+			$response_info["nickname"] = $query->result()[0]->nickname; 
+		}
+		
+		$this->db->where('email', $email);
+		$query = $this->db->get('user');
+		
+		if (sizeof($query->result()) > 0){
+			$response_info["email"] = $query->result()[0]->email;
+		}		
+		
+		if ($response_info["nickname"] == '' && $response_info["email"] == ''){
+			$registration_info = array(
+					"first_name" => $_POST['firstname'],
+					"last_name" => $_POST['lastname'],
+					"nickname" => $_POST['nickname'],
+					"password" => md5($_POST['password']),
+					"birthday" => $_POST['birthday'],
+					"email" => $_POST['email'],
+					"confirm_email" => md5($_POST['email'])
+			);
+			$this->db->insert('user', $registration_info);
+		}		
+		
+		echo json_encode($response_info);
+		
 	}
 }

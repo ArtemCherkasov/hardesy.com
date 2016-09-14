@@ -1,3 +1,4 @@
+var subdomen = "Hardesy.com";
 $(document).ready(function(){
 	/*
 	for(var i = 1; i <= 20; ++i){
@@ -8,6 +9,22 @@ $(document).ready(function(){
 	}
 	*/
 	$("#id_button_registration").click(function(){
-		window.location = "/index.php/registration";
+		window.location = "/" + subdomen + "/index.php/registration";
+		//window.location = "/index.php/registration";
+	});
+	$("#id_button_login").click(function(){
+		$.ajax({
+			type: "POST",
+			url: "/" + subdomen + "/index.php/user/login",
+			data: {
+				login: $("input:text[name=login]").val(),
+				password: $("input:password[name=password]").val()
+			},
+			dataType: "json"
+		}).done(function(message){
+			console.log(message);
+		}).fail(function(){
+			console.log("fail");
+		});
 	});
 });

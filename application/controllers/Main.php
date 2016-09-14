@@ -21,11 +21,14 @@ class Main extends CI_Controller {
 	
 	public function view()
 	{
-		$this->load->view('templates/main/header_top');
-		$this->load->view('templates/main/header_middle');
+		$subdomain = array(
+				"subdomain" => "Hardesy.com/"
+		);
+		$this->load->view('templates/main/header_top', $subdomain);
+		$this->load->view('templates/main/header_middle', $subdomain);
 		//$this->load->view('templates/registration/header_middle', '<script></script>');
-		$this->load->view('templates/main/header_bottom');
-		$this->load->view('templates/main/body');
-		$this->load->view('templates/main/footer');
+		$this->load->view('templates/main/header_bottom', $subdomain);
+		$this->load->view('templates/main/body', $subdomain);
+		$this->load->view('templates/main/footer', $subdomain);
 	}
 }

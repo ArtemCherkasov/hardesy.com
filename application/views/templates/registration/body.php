@@ -13,3 +13,4 @@
 		<div class="hint_text" id="hint_text_nickname"></div>
 		<div class="hint_text" id="hint_text_password"></div>
 		<div class="hint_text" id="hint_text_email"></div>
+		<div id="message_dialog"></div>
