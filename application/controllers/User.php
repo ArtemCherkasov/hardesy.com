@@ -68,7 +68,6 @@ class User extends CI_Controller {
 				$height_different =$this->height_constant - $height;
 				
 				if (($width_different) < 0 || ($height_different) < 0){
-					
 					$config_resize = array();
 					$config_resize['image_library'] = 'gd2';
 					$config_resize['source_image'] = $source;
@@ -86,7 +85,7 @@ class User extends CI_Controller {
 					$this->load->library('image_lib', $config_resize);
 					$this->image_lib->resize();
 					echo $this->image_lib->display_errors();
-
+					
 				}
 				
 			} else {
@@ -100,9 +99,17 @@ class User extends CI_Controller {
 				"subdomain" => ""
 		);
 		
-		
+		if (file_exists($session_data['image_link'])){
+			echo 'FILE EXIST';
+			list($width, $height) = getimagesize($session_data['image_link']);
+			$session_data["avatar_width"] = $width;
+			$session_data["avatar_height"] = $height;
+		} else {
+			$session_data["avatar_width"] = 200;
+			$session_data["avatar_height"] = 200;
+		}
 		//echo json_encode($session_data["logged"]);
-		if(array_key_exists("logged", $session_data)){
+		if(array_key_exists("logged", $session_data) && $session_data['logged']){
 			$this->load->view('templates/main/header_top', $subdomain);
 			$this->load->view('templates/user/header_middle', $subdomain);
 			$this->load->view('templates/main/header_bottom', $subdomain);
@@ -159,7 +166,7 @@ class User extends CI_Controller {
 		$this->load->library('upload', $config);
 		if($this->upload->do_upload('file')){
 			echo "success";
-		} 
+		}
 	}
 	
 }

@@ -1,2 +1,2 @@
-<script language="javascript" src="../<?=$subdomain?>/application/views/templates/js/user/user.js"></script>
+<script language="javascript" src="../<?=$subdomain?>application/views/templates/js/user/user.js"></script>
 <link rel="stylesheet" href="../<?=$subdomain?>application/views/templates/css/user/personal_cabinet.css" type="text/css" media="screen" />

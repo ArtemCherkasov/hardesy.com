@@ -20,7 +20,7 @@ $(document).ready(function(){
 	$("#upload_file_dialog").dialog({
 	      autoOpen: false,
 	      height: 400,
-	      width: 350,
+	      width: 300,
 	      modal: true
 	});
 	$("#button_load_image_id").click(function(){
